@@ -2,7 +2,7 @@
 title: "Chaffinch"
 author: "Sophie Davies"
 date: "12/11/2020"
-output: html_document
+output: bookdown::html_document2
 bibliography: references.bib
 ---
 
@@ -52,7 +52,7 @@ write.table(tidy_chaff,
             row.names = FALSE)
 ```
 
-```{r sum_sq function}
+```{r sum_sq function, results='hide'}
 
 sum_sq <- function(df, measure, group) {
   df %>% group_by({{ group }}) %>% 
@@ -74,8 +74,34 @@ data_summary <- function(df, measure, group) {
               se = sd(({{measure}} / length({{measure}}))))
 }
 
-data_summary(tidy_chaff, mass, sex)
+summarised_chaff <- data_summary(tidy_chaff, mass, sex)
+summarised_chaff
 ```
+
+```{r statistical analysis}
+
+stat_analysis <- aov(tidy_chaff$mass ~ tidy_chaff$sex)
+
+summary(stat_analysis)
+
+TukeyHSD(stat_analysis)
+```
+
+```{r visualising results, fig.cap="Mean mass of male and female chaffinches"}
+
+plot1 <- ggplot(tidy_chaff, aes(x= sex, y=mass)) +
+  geom_boxplot() + 
+  theme_classic() +
+  ylab("Mass") +
+  xlab("Sex") +
+  annotate("segment", x = 1, xend = 2, y= 30, yend = 30) +
+  annotate("segment", x = 1, xend = 1, y = 29, yend = 30) +
+  annotate("segment", x = 2, xend = 2, y = 29, yend = 30) +
+  annotate("text", x = 1.5, y = 31, label = "*", size = 8)
+
+plot1
+```
+
 # Discussion
 
 # References
