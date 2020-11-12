@@ -1,9 +1,9 @@
-function (base_size = 11, base_family = "", base_line_size = base_size/22, 
+theme_sophie <- function (base_size = 11, base_family = "", base_line_size = base_size/22, 
           base_rect_size = base_size/22) 
 {
   half_line <- base_size/2
   t <- theme(line = element_line(colour = "black", size = base_line_size, 
-                                 linetype = 1, lineend = "butt"), rect = element_rect(fill = "white", 
+                                 linetype = 1, lineend = "butt"), rect = element_rect(fill = "light blue", 
                                                                                       colour = "black", size = base_rect_size, linetype = 1), 
              text = element_text(family = base_family, face = "plain", 
                                  colour = "black", size = base_size, lineheight = 0.9, 
@@ -54,7 +54,4 @@ function (base_size = 11, base_family = "", base_line_size = base_size/22,
              plot.tag = element_text(size = rel(1.2), hjust = 0.5, 
                                      vjust = 0.5), plot.tag.position = "topleft", plot.margin = margin(half_line, 
                                                                                                        half_line, half_line, half_line), complete = TRUE)
-  ggplot_global$theme_all_null %+replace% t
 }
-<bytecode: 0x7f9615b6ee78>
-  <environment: namespace:ggplot2>
