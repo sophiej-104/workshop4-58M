@@ -1,0 +1,68 @@
+---
+title: "Chaffinch"
+author: "Sophie Davies"
+date: "12/11/2020"
+output: html_document
+---
+
+# Introduction
+
+Investigation into the masses of male and female chaffinches.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE,
+                      message = FALSE, fig.retina = 3)
+```
+
+```{r packages}
+library(tidyverse)
+```
+
+# Methods
+
+Importing and summarising the data from chaff.txt. 
+
+```{r importing data}
+# reading in the chaff.txt data
+chaff <- read.table("data-raw/chaff.txt", header = TRUE)
+```
+
+```{r tidying data}
+# reformatting the data into tidy format and writing to file
+tidy_chaff <- chaff %>%
+  pivot_longer(names_to = "sex", 
+               values_to = "mass",
+               cols = everything())
+
+file <-  "data/tidy_chaff.txt"
+write.table(tidy_chaff, 
+            file, 
+            quote = FALSE,
+            row.names = FALSE)
+```
+
+```{r sum_sq function}
+
+sum_sq <- function(df, measure, group) {
+  df %>% group_by({{ group }}) %>% 
+    summarise(ss = sum(({{measure}} - mean({{measure}}))^2))
+}
+
+sum_sq(tidy_chaff, mass, sex)
+
+```
+# Results
+
+```{r summary function}
+
+data_summary <- function(df, measure, group) {
+  df %>% group_by({{ group }}) %>%
+    summarise(mean = mean(({{measure}})),
+              n = length(({{measure}})),
+              sd = sd(({{measure}})),
+              se = sd(({{measure}} / length({{measure}}))))
+}
+
+data_summary(tidy_chaff, mass, sex)
+```
+# Discussion
