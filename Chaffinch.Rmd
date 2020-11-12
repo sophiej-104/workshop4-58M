@@ -13,12 +13,21 @@ knitr::opts_chunk$set(echo = FALSE, warning = FALSE,
 
 ```{r packages}
 library(tidyverse)
-library(citr)
 ```
 # Introduction
 
-The chaffinch is one of the most widespread and abundant bird in Britain and Ireland, 
-Monitoring of the phenotype of species is important for the species and can give indication changes in phenotypic plasticity or genetic variation, 
+The chaffinch is one of the most widespread and abundant bird in Britain and Ireland, [@noauthor_undated-bz].
+Monitoring of the phenotype of species is important for the species and can give indication changes in phenotypic plasticity or genetic variation, [@Blackburn2013-wv].
+
+This data looks at the differences in mass between the male chaffinch, \@ref(fig: male chaffinch figure) and the female chaffinch, \@ref(fig: female chaffinch figure). 
+
+
+```{r male chaffinch figure, fig.cap= "Male Chaffinch, By Andreas Trepte - Own work, CC BY-SA 2.5, https://commons.wikimedia.org/w/index.php?curid=15264293", out.width="50%"}
+knitr::include_graphics("images/Chaffinch_(Fringilla_coelebs).jpg")
+```
+```{r female chaffinch figure, fig.cap="Female Chaffinch, By 4028mdk09 - Own work, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=20640633", out.width="50%"}
+knitr::include_graphics("images/Fulda_Buchfinkweibchen_Juni_2012.jpeg")
+```
 
 # Methods
 
